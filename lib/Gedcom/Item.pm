@@ -579,7 +579,8 @@ sub full_value {
         my $v = defined $item->{value} ? $item->{value} : "";
         $v =~ s/[\r\n]+$//;
         $value .= "\n$v" if $item->{tag} eq "CONT";
-        $value .=    $v  if $item->{tag} eq "CONC";
+        $value .= ' '  if(($item->{tag} eq 'CONC') && ($value !~ /\s$/));
+        $value .= $v  if $item->{tag} eq "CONC";
     }
     $value
 }
